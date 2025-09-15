@@ -1,16 +1,22 @@
 "use client"
 
-import { Form, FormProvider, useFormContext } from "react-hook-form"
+import { useFormContext } from "react-hook-form"
 
 import {
     FormControl,
     FormField,
     FormItem,
     FormLabel,
-    FormMessage
-} from "@/components/ui/form"
+    FormMessage,
+} from '@/components/ui/form'
 
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"
+import {
+    Select,
+    SelectContent,
+    SelectItem,
+    SelectTrigger,
+    SelectValue,
+} from '@/components/ui/select'
 
 type DataObj = {
     id: string,
@@ -25,10 +31,7 @@ type Props<S> = {
 }
 
 export function SelectWithLabel<S>({
-    fieldTitle,
-    nameInSchema,
-    data,
-    className
+    fieldTitle, nameInSchema, data, className
 }: Props<S>) {
     const form = useFormContext()
 
@@ -57,8 +60,9 @@ export function SelectWithLabel<S>({
                                 <SelectValue placeholder="Select" />
                             </SelectTrigger>
                         </FormControl>
+
                         <SelectContent>
-                            {data.map((item) => (
+                            {data.map(item => (
                                 <SelectItem
                                     key={`${nameInSchema}_${item.id}`}
                                     value={item.id}
@@ -67,10 +71,11 @@ export function SelectWithLabel<S>({
                                 </SelectItem>
                             ))}
                         </SelectContent>
+
                     </Select>
                     <FormMessage />
                 </FormItem>
             )}
-        ></FormField>
+        />
     )
 }

@@ -1,3 +1,4 @@
+
 "use client"
 
 import { useRouter } from "next/navigation"
@@ -7,7 +8,7 @@ import { ButtonHTMLAttributes } from "react"
 type Props = {
     title: string,
     className?: string,
-    variant?: "default" | "ghost" | "outline" | "destructive" | "secondary" | "link" | null | undefined
+    variant?: "default" | "destructive" | "outline" | "secondary" | "ghost" | "link" | null | undefined,
 } & ButtonHTMLAttributes<HTMLButtonElement>
 
 export function BackButton(
@@ -19,7 +20,8 @@ export function BackButton(
             variant={variant}
             className={className}
             onClick={() => router.back()}
+            title={title}
+            {...props}
         >{title}</Button>
-
     )
 }

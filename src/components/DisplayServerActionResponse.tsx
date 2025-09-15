@@ -37,9 +37,14 @@ export function DisplayServerActionResponse({ result }: Props) {
             {validationErrors && (
                 <MessageBox
                     type="error"
-                    content={Object.keys(validationErrors).map(key => (
-                        <p key={key}>{`${key}: ${validationErrors[key as keyof typeof validationErrors]}`}</p>
-                    ))}
+                    content={
+                        <ul className="list-disc list-inside">
+                            {Object.entries(validationErrors).map(
+                                ([key, errors]) =>
+                                    errors?.map(error => <li key={`${key}-${error}`}>{`${key}: ${error}`}</li>)
+                            )}
+                        </ul>
+                    }
                 />
             )}
         </div>

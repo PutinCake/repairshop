@@ -29,7 +29,7 @@ export const saveTicketAction = actionClient
         // New ticket 
         // All new tickets are open by default - no need to set completed to true
         // createdAt and updatedAt are set by the database
-        if (!ticket.id) {
+        if (ticket.id === undefined || ticket.id === null) {
             const result = await db.insert(tickets).values({
                 customerId: ticket.customerId,
                 title: ticket.title,
@@ -50,7 +50,7 @@ export const saveTicketAction = actionClient
                 completed: ticket.completed,
                 tech: ticket.tech,
             })
-            .where(eq(tickets.id, ticket.id))
+            .where(eq(tickets.id, ticket.id!))
             .returning({ updatedId: tickets.id })
 
         return { message: `Ticket ID #${result[0].updatedId} updated successfully` }

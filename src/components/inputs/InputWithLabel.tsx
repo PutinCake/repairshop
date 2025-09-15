@@ -1,17 +1,17 @@
+
 "use client"
 
-import { Form, FormProvider, useFormContext } from "react-hook-form"
+import { useFormContext } from "react-hook-form"
 
 import {
     FormControl,
     FormField,
     FormItem,
     FormLabel,
-    FormMessage
-} from "@/components/ui/form"
-
-import { Input } from "@/components/ui/input"
-import { InputHTMLAttributes, useState } from "react"
+    FormMessage,
+} from '@/components/ui/form'
+import { Input } from '@/components/ui/input'
+import { InputHTMLAttributes } from "react"
 
 type Props<S> = {
     fieldTitle: string,
@@ -20,10 +20,7 @@ type Props<S> = {
 } & InputHTMLAttributes<HTMLInputElement>
 
 export function InputWithLabel<S>({
-    fieldTitle,
-    nameInSchema,
-    className,
-    ...props
+    fieldTitle, nameInSchema, className, ...props
 }: Props<S>) {
     const form = useFormContext()
 
@@ -39,17 +36,19 @@ export function InputWithLabel<S>({
                     >
                         {fieldTitle}
                     </FormLabel>
+
                     <FormControl>
                         <Input
                             id={nameInSchema}
                             className={`w-full max-w-xs disabled:text-blue-500 dark:disabled:text-yellow-300 disabled:opacity-75 ${className}`}
-                            {...field}
                             {...props}
+                            {...field}
                         />
                     </FormControl>
+
                     <FormMessage />
                 </FormItem>
             )}
-        ></FormField>
+        />
     )
 }
